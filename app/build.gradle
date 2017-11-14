@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "ru.gafuk.android"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    if (projects.hasProperty('devBuild')){
+        splits.abi.enable = false
+        splits.density.enable = false
+
+        aaptOptions.cruncherEnabled = false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Android support
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support:support-vector-drawable:26.1.0'
+    compile support.appcompat7
+    compile support.support4
+    compile support.constraintLayout
+    compile support.recyclerview
+    compile support.cardview
+    compile support.design
+
+    // Gson
+    compile gson.gson
+
+    // CircleImage
+    compile circleimage.circleimage
+
+    // RxJava
+    compile rxjava2.rxjava
+    compile rxjava2.rxandroid
+
+    // Okhttp
+    compile okhttp.okhttp
+    compile okhttp.urlconnection
+
+    // Glide
+    compile glide.glide
+    compile glide.recyclerview
+    annotationProcessor glide.compiler
+
+    // Jsoup
+    compile jsoup.jsoup
+
+    // Adapterdelegates https://github.com/sockeqwe/AdapterDelegates
+    compile adapterdelegates.adapterdelegates
+
+    // Dbflow
+    compile dbflow.core
+    compile dbflow.dbflow
+    // chatkit
+//    compile chatkit.chatkit
+}

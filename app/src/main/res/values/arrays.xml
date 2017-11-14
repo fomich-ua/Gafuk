@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="entries_news_provider">
+        <item>RSS-канал новостей</item>
+        <item>Парсер страницы новостей</item>
+    </string-array>
+
+    <string-array name="entry_values_news_provider">
+        <item>RSS</item>
+        <item>news_site</item>
+    </string-array>
+
+    <string-array name="entries_blogs_provider">
+        <item>RSS-канал блогов</item>
+        <item>Парсер страницы блогов</item>
+    </string-array>
+
+    <string-array name="entry_values_blogs_provider">
+        <item>RSS</item>
+        <item>blog_site</item>
+    </string-array>
+
+    <string-array name="entries_news_holder">
+        <item>Простой</item>
+        <item>Сокращенный</item>
+        <item>Полный</item>
+    </string-array>
+
+    <string-array name="entry_values_news_holder">
+        <item>simple</item>
+        <item>compat</item>
+        <item>full</item>
+    </string-array>
+
+    <string-array name="entries_blog_holder">
+        <item>Простой</item>
+        <item>Сокращенный</item>
+    </string-array>
+
+    <string-array name="entry_values_blog_holder">
+        <item>simple</item>
+        <item>compat</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/comment_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/comment_user_avatar"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="#8A000000"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/comment_user_nick"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="#8A000000"
+        app:layout_constraintStart_toEndOf="@id/comment_user_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Колдун Василий" />
+
+    <TextView
+        android:id="@+id/comment_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="#8A000000"
+        app:layout_constraintEnd_toStartOf="@+id/comment_rating"
+        app:layout_constraintStart_toEndOf="@+id/comment_user_nick"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12 ноября 2017 в 21:03" />
+
+    <TextView
+        android:id="@+id/comment_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:textAlignment="viewEnd"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="#8A000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="+1304" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/horizontal_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="comment_user_avatar,comment_user_nick,comment_date,comment_rating"
+        />
+
+    <TextView
+        android:id="@+id/comment_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="#DE000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_barrier"
+        tools:text="По сути эта консоль для фанатов Хуящика или железных гиков, которые любят все новое. Мучаюсь брать или нет...есть Прошка и хороший комп...вроде эта штука не особо то и нужна...но я хочу дать Майкам еще один шанс...как было с Х360...может они заключат договор с Рокстар и РДР2 будет намного круче чем на Сони...а может летом на Е3 выкатят линейку крутых эксклюзивов...слишком много может быть...но консоль вышла отменной и это факт" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:defaultValue="compat"
+        android:dialogTitle="Режим отображения блога в списке"
+        android:entries="@array/entries_blog_holder"
+        android:entryValues="@array/entry_values_blog_holder"
+        android:key="blog.item_view"
+        android:summary="%s"
+        android:title="Режим отображения блога в списке" />
+    <ListPreference
+        android:defaultValue="RSS"
+        android:dialogTitle="@string/blogs_provider"
+        android:entries="@array/entries_blogs_provider"
+        android:entryValues="@array/entry_values_blogs_provider"
+        android:key="blog.provider"
+        android:summary="%s"
+        android:title="@string/blogs_provider" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="blog.load_on_scroll"
+        android:summary="Автоматическая подгрузка блогов при прокрутке списка (только если источником является парсер)"
+        android:title="@string/blogs_load_on_scroll" />
+</PreferenceScreen>

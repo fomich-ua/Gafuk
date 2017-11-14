@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:defaultValue="compat"
+        android:dialogTitle="Режим отображения новости в списке"
+        android:entries="@array/entries_news_holder"
+        android:entryValues="@array/entry_values_news_holder"
+        android:key="news.item_view"
+        android:summary="%s"
+        android:title="Режим отображения новости в списке" />
+    <ListPreference
+        android:defaultValue="RSS"
+        android:dialogTitle="@string/news_provider"
+        android:entries="@array/entries_news_provider"
+        android:entryValues="@array/entry_values_news_provider"
+        android:key="news.provider"
+        android:summary="%s"
+        android:title="@string/news_provider" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="news.load_on_scroll"
+        android:summary="Автоматическая подгрузка новостей при прокрутке списка (только если источником является парсер)"
+        android:title="@string/news_load_on_scroll" />
+</PreferenceScreen>

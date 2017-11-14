@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    style="@style/CardView.Light"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="2dp"
+    android:foreground="?attr/selectableItemBackground">
+
+    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/contact_avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/contact_nick"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="#DE000000"
+            app:layout_constraintEnd_toStartOf="@+id/contact_count"
+            app:layout_constraintStart_toEndOf="@+id/contact_avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/test_nick" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/contact_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/count_background"
+            android:gravity="center"
+            android:minWidth="24dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="#DE000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/count_background"
+            tools:text="@string/test_count_number" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/contact_lastMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#8A000000"
+            android:text="Здесь возможно будет последнее сообщение. А может и не будет."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/contact_count"
+            app:layout_constraintStart_toEndOf="@+id/contact_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/contact_nick" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

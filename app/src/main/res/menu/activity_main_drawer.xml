@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_auth"
+            android:icon="@drawable/ic_person_add"
+            android:title="@string/fragment_title_auth"/>
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_newspaper"
+            android:title="@string/fragment_title_news_list" />
+        <item
+            android:id="@+id/nav_blogs"
+            android:icon="@drawable/ic_blog"
+            android:title="@string/fragment_title_blogs_list" />
+        <item
+            android:id="@+id/nav_contacts"
+            android:icon="@drawable/ic_contacts"
+            android:title="@string/fragment_title_contacts" />
+        <item
+            android:id="@+id/nav_users"
+            android:icon="@drawable/ic_users"
+            android:title="@string/fragment_title_users" />
+        <!--<item-->
+            <!--android:id="@+id/nav_slideshow"-->
+            <!--android:icon="@drawable/ic_menu_slideshow"-->
+            <!--android:title="Slideshow" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_manage"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title="Tools" />-->
+    </group>
+
+    <item android:title="@string/other">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/activity_title_settings"/>
+        </menu>
+    </item>
+
+</menu>

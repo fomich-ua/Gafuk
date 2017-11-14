@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/auth_main_form"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/dp32"
+        android:paddingStart="@dimen/dp32"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/auth_login"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:hint="@string/auth_login"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:scrollHorizontally="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/auth_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/auth_password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:scrollHorizontally="true" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+
+        <!--android:animateLayoutChanges="true"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<android.support.v7.widget.AppCompatImageView-->
+        <!--android:id="@+id/captchaImage"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:padding="@dimen/dp8"-->
+        <!--android:scaleType="fitCenter" />-->
+
+        <!--</LinearLayout>-->
+
+
+        <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<android.support.v7.widget.AppCompatEditText-->
+        <!--android:id="@+id/auth_captcha"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:hint="@string/auth_captcha"-->
+        <!--android:inputType="number"-->
+        <!--android:maxLength="4"-->
+        <!--android:maxLines="1"-->
+        <!--android:scrollHorizontally="true" />-->
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/auth_remember"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="@string/auth_remember"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/auth_send"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp48"
+                android:layout_gravity="end"
+                android:enabled="false"
+                android:text="@string/auth_btn_login" />
+
+            <ProgressBar
+                android:id="@+id/login_progress"
+                android:layout_width="@dimen/dp36"
+                android:layout_height="@dimen/dp36"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/dp16"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/auth_skip"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            android:text="@string/auth_skip" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
