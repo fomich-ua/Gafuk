@@ -8,10 +8,13 @@ import android.util.Log;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Observer;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.Cache;
 import okhttp3.Cookie;
@@ -32,12 +35,16 @@ import ru.gafuk.android.utils.SimpleObservable;
 public class Client {
     private final static String LOG_TAG = Constant.GAFUK_LOG_PREFIX + Client.class.getSimpleName();
 
+    private final static Pattern ipPattern = Pattern.compile("\"(\\d+.\\d+.\\d+.\\d+)");
+
     private static Client INSTANCE = null;
     private Map<String, Cookie> cookies = new HashMap<>();
     private final int cacheSize = 1024 * 104 * 10;
 
     private static SimpleObservable networkObservables = new SimpleObservable();
     private static SimpleObservable loginStateObservables = new SimpleObservable();
+
+    private static String currrentIP = "";
 
     private final CookieJar cookieJar = new CookieJar() {
         @Override
@@ -67,6 +74,9 @@ public class Client {
             .cookieJar(cookieJar)
             .build();
 
+    private final OkHttpClient clientGetIP = new OkHttpClient.Builder()
+            .build();
+
     private Client(){
         String user_id = App.getInstance().getPreferences().getString("cookie_userid", null);
         Cookie parsedCookie;
@@ -89,31 +99,43 @@ public class Client {
 
     public static NetworkResponse get(String url) throws Exception{
 
-//        NetworkResponse networkResponse = new NetworkResponse(url);
-
         Request request = new Request.Builder()
                 .url(url)
                 .build();
 
         return request(request);
 
-//        try (Response okHttpResponse = getINSTANCE().client.newCall(request).execute()){
-//
-//            Log.d(LOG_TAG, "get: url=" + url + ", message=" + okHttpResponse.message());
-//
-//            if (okHttpResponse.isSuccessful()){
-//                networkResponse.setCode(okHttpResponse.code());
-//                networkResponse.setMessage(okHttpResponse.message());
-//                networkResponse.setRedirect(okHttpResponse.request().url().toString());
-//                networkResponse.setBody(okHttpResponse.body().string());
-//            }
-//        }
-
-//        return networkResponse;
     }
 
     public static NetworkResponse request(Request request) throws Exception{
         NetworkResponse networkResponse = new NetworkResponse(request.url().toString());
+
+        // проверка - изменился ли IP со времени последнего соединения
+        if (request.url().toString().contains(Constant.GAFUK_URL)){
+            try (Response okHttpResponse = getINSTANCE().clientGetIP.newCall(new Request.Builder()
+                    .url("http://ip.jsontest.com/")
+                    .build()).execute()){
+                Log.d(LOG_TAG, "get: url=" + request.url().toString() + ", code=" + okHttpResponse.code() + ", message=" + okHttpResponse.message());
+                Matcher matcher = ipPattern.matcher(okHttpResponse.body().string());
+                if (matcher.find()){
+                    if (currrentIP.isEmpty()){
+                        getINSTANCE().client.newCall(new Request.Builder()
+                                .url(Constant.GAFUK_LOGIN_STRING)
+                                .build()).execute();
+                        currrentIP = matcher.group(1);
+                    }else {
+                        if (!currrentIP.equals(matcher.group(1))){
+                            // попытка входа с помощью cookie
+                            clearSessionCookies();
+                            getINSTANCE().client.newCall(new Request.Builder()
+                                    .url(Constant.GAFUK_LOGIN_STRING)
+                                    .build()).execute();
+                            currrentIP = matcher.group(1);
+                        }
+                    }
+                }
+            }
+        }
 
         try (Response okHttpResponse = getINSTANCE().client.newCall(request).execute()){
             Log.d(LOG_TAG, "get: url=" + request.url().toString() + ", code=" + okHttpResponse.code() + ", message=" + okHttpResponse.message());
@@ -158,6 +180,19 @@ public class Client {
         getINSTANCE().cookies.clear();
     }
 
+    public static void clearSessionCookies() {
+        Log.d(LOG_TAG, "clearCookies: ");
+        // clear session cookies on every network changes
+        Iterator<String> it = getINSTANCE().cookies.keySet().iterator();
+        while (it.hasNext()){
+            String key = it.next();
+            if (!key.contains("[userid]")){
+                it.remove();
+                Log.d(LOG_TAG, "notifyNetworkObservers: removed cookie " + key);
+            }
+        }
+    }
+
     public static void saveAuthCookie(){
         for (Map.Entry<String, Cookie > keyValue: getINSTANCE().cookies.entrySet()){
             if (keyValue.getKey().contains("[userid]")){
@@ -170,6 +205,7 @@ public class Client {
             }
         }
     }
+
     private Cookie parseCookie(String cookieFields) {
         /*Хранение: Url|:|Cookie*/
         String[] fields = cookieFields.split("\\|:\\|");
@@ -211,8 +247,6 @@ public class Client {
     }
 
     public static void notifyNetworkObservers(Boolean b) {
-        // clear session cookies on every network changes
-
         networkObservables.notifyObservers(b);
     }
 
