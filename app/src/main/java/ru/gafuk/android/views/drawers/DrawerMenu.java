@@ -1,5 +1,6 @@
 package ru.gafuk.android.views.drawers;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -9,15 +10,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import ru.gafuk.android.App;
 import ru.gafuk.android.Constant;
 import ru.gafuk.android.MainActivity;
 import ru.gafuk.android.R;
+import ru.gafuk.android.api.Api;
+import ru.gafuk.android.api.auth.AuthApi;
 import ru.gafuk.android.client.Client;
 import ru.gafuk.android.fragments.BaseFragment;
 import ru.gafuk.android.fragments.TabManager;
@@ -26,6 +32,7 @@ import ru.gafuk.android.fragments.blogs.main.BlogsMainFragment;
 import ru.gafuk.android.fragments.contacts.ContactsFragment;
 import ru.gafuk.android.fragments.news.main.NewsMainFragment;
 import ru.gafuk.android.fragments.users.UsersFragment;
+import ru.gafuk.android.rxapi.RxApi;
 import ru.gafuk.android.settings.SettingsActivity;
 import ru.gafuk.android.views.drawers.adapters.FragmentsListAdapter;
 
@@ -133,6 +140,7 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
                 R.id.nav_users,
                 UsersFragment.class));
         setEnabledStateMenuItem(R.id.nav_users, Client.loggedWithCookie());
+
     }
 
     private void initFragmentsList(Bundle savedInstanceState){
@@ -330,10 +338,9 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
         fragmentsListAdapter.notifyDataSetChanged();
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(android.view.MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
         MenuItem menuItem = findMenuItem(id);
@@ -341,19 +348,32 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
             selectMenuItem(menuItem);
         }else {
             switch (id){
-                case R.id.nav_settings:
+                case R.id.nav_settings:{
                     activity.startActivity(new Intent(activity, SettingsActivity.class));
+                    break;
+                }case R.id.nav_logout:{
+                    new AlertDialog.Builder(activity)
+                            .setMessage(R.string.ask_logout)
+                            .setPositiveButton(R.string.ok, (dialogInterface, which) -> RxApi.Auth().logout().onErrorReturn(throwable -> false)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(aBoolean -> {
+                                    if (aBoolean) {
+                                        Toast.makeText(App.getContext(), "Logout complete", Toast.LENGTH_LONG).show();
+                                        Client.notifyLoginStateObservables(false);
+                                    } else {
+                                        Toast.makeText(App.getContext(), "Logout error", Toast.LENGTH_LONG).show();
+                                    }
+                                }))
+                            .setNegativeButton(R.string.no, null)
+                    .show();
+                    break;
+                }
+                default:
+                    break;
             }
         }
-//        if (id == R.id.nav_news) {
-//
-//        } else if (id == R.id.nav_blogs) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
+
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
