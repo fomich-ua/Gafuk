@@ -265,7 +265,7 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
     }
 
     public void showMenuItem(@IdRes int menuRes){
-        navigationView.getMenu().findItem(menuRes).setVisible(false);
+        navigationView.getMenu().findItem(menuRes).setVisible(true);
     }
 
     public void hideMenuItem(MenuItem menuItem){

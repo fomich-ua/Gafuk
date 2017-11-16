@@ -110,6 +110,8 @@ public class AuthApi implements IAuthApi{
 
     @Override
     public boolean logout() throws Exception {
+        NetworkResponse response = Client.get(Constant.GAFUK_LOGOUT_STRING);
+        Client.clearCookies();
         return false;
     }
 }

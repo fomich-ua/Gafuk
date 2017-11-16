@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import ru.gafuk.android.App;
 import ru.gafuk.android.R;
 import ru.gafuk.android.api.auth.models.AuthForm;
+import ru.gafuk.android.client.Client;
 import ru.gafuk.android.fragments.BaseFragment;
 import ru.gafuk.android.fragments.TabManager;
 import ru.gafuk.android.fragments.contacts.ContactsFragment;
@@ -132,6 +133,7 @@ public class AuthFragment extends BaseFragment {
 
     private void showLoginResult(boolean loginResult) {
         Log.d(AuthFragment.class.getSimpleName(), "showLoginResult " + loginResult);
+        Client.notifyLoginStateObservables(loginResult);
         if (!loginResult) {
             password.setText("");
             loginProgress.setVisibility(View.GONE);
@@ -143,11 +145,11 @@ public class AuthFragment extends BaseFragment {
 
             DrawerMenu drawerMenu = getMainActivity().getDrawerMenu();
             MenuItem menuItem = null;
-
-            menuItem = drawerMenu.findMenuItem(AuthFragment.class);
-            drawerMenu.hideMenuItem(menuItem);
+//
+//            menuItem = drawerMenu.findMenuItem(AuthFragment.class);
+//            drawerMenu.hideMenuItem(menuItem);
             TabManager.getInstance().remove(AuthFragment.this);
-
+//
             menuItem = drawerMenu.findMenuItem(ContactsFragment.class);
             drawerMenu.selectMenuItem(menuItem);
 
