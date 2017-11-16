@@ -11,6 +11,7 @@
     <string name="auth_guest">Гость</string>
     <string name="ask_logout">Вы уверены, что хотите выйти из аккаунта?</string>
     <string name="auth_login">Логин</string>
+    <string name="auth_logout">Выход из аккаунта</string>
     <string name="auth_password">Пароль</string>
     <string name="auth_remember">Запомнить</string>
     <string name="auth_btn_login">Войти</string>
@@ -37,6 +38,7 @@
     <string name="action_select">Выберите действие</string>
     <string name="karma_caption_user">Карма: %s</string>
     <string name="refresh_caption">Обновить</string>
+    <string name="logout">Выйти</string>
 
     <!-- Other -->
     <string name="ask_close_other_tabs">Закрыть остальные вкладки?</string>
@@ -56,7 +58,6 @@
     <string name="fragment_title_blog">Блог</string>
     <string name="fragment_title_history">История</string>
     <string name="fragment_title_dialogs">Диалоги</string>
-    <string name="activity_title_settings">Настройки</string>
     <string name="fragment_title_contacts">Контакты</string>
     <string name="fragment_title_users">Пользователи</string>
     <string name="fragment_title_messages">Переписка</string>
