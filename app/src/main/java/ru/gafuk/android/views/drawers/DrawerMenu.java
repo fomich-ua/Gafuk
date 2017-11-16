@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import ru.gafuk.android.App;
 import ru.gafuk.android.Constant;
@@ -46,6 +48,7 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
     private RecyclerView fragmentsList;
     private LinearLayoutManager fragmentsListLayoutManager;
     private FragmentsListAdapter fragmentsListAdapter;
+    private final Observer loginStateObservable;
 
     private Bundle savedInstanceState;
 
@@ -67,6 +70,17 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
         fragmentsList.setLayoutManager(fragmentsListLayoutManager);
         fragmentsList.setAdapter(fragmentsListAdapter);
 
+        loginStateObservable = new Observer() {
+            @Override
+            public void update(Observable observable, Object o) {
+
+                Boolean loginState = (Boolean) o;
+
+                initMenu(null);
+            }
+        };
+
+        Client.addLoginStateObservable(loginStateObservable);
     }
 
     public void destroy(){
@@ -86,6 +100,9 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
 
     private void initMenu(Bundle savedInstanceState){
         // TODO: 24.10.2017 видимость пунктов меню в зависимости от допусловий
+        createdMenuItems.clear();
+        showMenuItem(R.id.nav_auth);
+
         if (!Client.loggedWithCookie()) {
             createdMenuItems.add(new MenuItem(App.getInstance().getString(R.string.fragment_title_auth),
                     R.drawable.ic_person_add,
@@ -94,7 +111,6 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
         }else {
             hideMenuItem(R.id.nav_auth);
         }
-
 
         createdMenuItems.add(new MenuItem(App.getInstance().getString(R.string.fragment_title_news_list),
                 R.drawable.ic_newspaper,
@@ -242,6 +258,14 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
             }
         }
         return null;
+    }
+
+    public void showMenuItem(MenuItem menuItem){
+        showMenuItem(menuItem.getMenuRes());
+    }
+
+    public void showMenuItem(@IdRes int menuRes){
+        navigationView.getMenu().findItem(menuRes).setVisible(false);
     }
 
     public void hideMenuItem(MenuItem menuItem){
