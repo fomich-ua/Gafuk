@@ -71,8 +71,9 @@ public class AuthFragment extends BaseFragment {
             DrawerMenu drawerMenu = getMainActivity().getDrawerMenu();
             MenuItem menuItem = null;
 
-            menuItem = drawerMenu.findMenuItem(AuthFragment.class);
-            drawerMenu.hideMenuItem(menuItem);
+//            menuItem = drawerMenu.findMenuItem(AuthFragment.class);
+//            drawerMenu.hideMenuItem(menuItem);
+
             TabManager.getInstance().remove(AuthFragment.this);
 
             menuItem = drawerMenu.findMenuItem(NewsMainFragment.class);

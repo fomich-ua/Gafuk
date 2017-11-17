@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import okhttp3.FormBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import ru.gafuk.android.App;
 import ru.gafuk.android.Constant;
 import ru.gafuk.android.api.auth.interfaces.IAuthApi;
 import ru.gafuk.android.api.auth.interfaces.IAuthForm;
@@ -112,6 +113,9 @@ public class AuthApi implements IAuthApi{
     public boolean logout() throws Exception {
         NetworkResponse response = Client.get(Constant.GAFUK_LOGOUT_STRING);
         Client.clearCookies();
-        return false;
+        App.getInstance().getPreferences().edit()
+                .remove("cookie_userid")
+                .apply();
+        return true;
     }
 }

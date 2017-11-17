@@ -76,7 +76,6 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
         fragmentsList = activity.findViewById(R.id.nav_fragments_list);
         fragmentsList.setLayoutManager(fragmentsListLayoutManager);
         fragmentsList.setAdapter(fragmentsListAdapter);
-
         loginStateObservable = new Observer() {
             @Override
             public void update(Observable observable, Object o) {
@@ -88,6 +87,7 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
         };
 
         Client.addLoginStateObservable(loginStateObservable);
+
     }
 
     public void destroy(){
@@ -140,7 +140,7 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
                 R.id.nav_users,
                 UsersFragment.class));
         setEnabledStateMenuItem(R.id.nav_users, Client.loggedWithCookie());
-
+        setEnabledStateMenuItem(R.id.nav_logout, Client.loggedWithCookie());
     }
 
     private void initFragmentsList(Bundle savedInstanceState){

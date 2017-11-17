@@ -19,6 +19,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import ru.gafuk.android.MainActivity;
 import ru.gafuk.android.R;
 import ru.gafuk.android.client.Client;
+import ru.gafuk.android.fragments.news.main.NewsMainFragment;
+import ru.gafuk.android.views.drawers.DrawerMenu;
 
 /**
  * Created by Александр on 22.10.2017.
@@ -47,7 +49,21 @@ public abstract class BaseFragment extends Fragment {
 
     protected CompositeDisposable disposable = new CompositeDisposable();
 
-    protected Observer networkObserver = (observable, o) -> {
+    protected final Observer loginStateObservable = (observable, o) -> {
+
+        Boolean loginState = (Boolean) o;
+
+        if (getConfiguration().needAuth()){
+            if (!loginState){
+                DrawerMenu drawerMenu = getMainActivity().getDrawerMenu();
+                drawerMenu.selectMenuItem(drawerMenu.findMenuItem(NewsMainFragment.class));
+
+                TabManager.getInstance().remove(this);
+            }
+        }
+    };
+
+    protected final Observer networkObserver = (observable, o) -> {
         if (o == null)
             o = true;
         if (!configuration.isUseCache()
@@ -66,6 +82,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (savedInstanceState != null) {
             title = savedInstanceState.getString(BUNDLE_PREFIX.concat(BUNDLE_TITLE));
             subtitle = savedInstanceState.getString(BUNDLE_PREFIX.concat(BUNDLE_SUBTITLE));
@@ -77,6 +94,10 @@ public abstract class BaseFragment extends Fragment {
             subtitle = getArguments().getString(TAB_SUBTITLE);
         }
         setHasOptionsMenu(true);
+
+        Client.addLoginStateObservable(loginStateObservable);
+        Client.addNetworkObserver(networkObserver);
+
     }
 
     @Nullable
@@ -90,8 +111,6 @@ public abstract class BaseFragment extends Fragment {
 
         boolean isMenu = configuration.isAlone() || configuration.isMenu();
 
-        Client.addNetworkObserver(networkObserver);
-
         return view;
     }
 
@@ -103,6 +122,7 @@ public abstract class BaseFragment extends Fragment {
         if (!disposable.isDisposed())
             disposable.dispose();
 
+        Client.removeLoginStateObservable(loginStateObservable);
         Client.removeNetworkObserver(networkObserver);
     }
 

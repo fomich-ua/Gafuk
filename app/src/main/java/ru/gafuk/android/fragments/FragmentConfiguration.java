@@ -5,10 +5,19 @@ package ru.gafuk.android.fragments;
  */
 
 public class FragmentConfiguration {
+    private boolean needAuth = false;
     private boolean isAlone = false;
     private boolean isMenu = false;
     private boolean useCache = false;
     private String defaultTitle = "";
+
+    public boolean needAuth() {
+        return needAuth;
+    }
+
+    public void setNeedAuth(boolean needAuth) {
+        this.needAuth = needAuth;
+    }
 
     public boolean isAlone() {
         return isAlone;

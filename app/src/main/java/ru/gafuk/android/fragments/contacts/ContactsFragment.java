@@ -20,19 +20,24 @@ import com.bumptech.glide.util.ViewPreloadSizeProvider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import ru.gafuk.android.App;
 import ru.gafuk.android.R;
 import ru.gafuk.android.adapters.ContactsMainAdapter;
 import ru.gafuk.android.adapters.adapterdelegates.ContactsAdapterDelegate;
 import ru.gafuk.android.api.contacts.models.ContactItem;
+import ru.gafuk.android.client.Client;
 import ru.gafuk.android.fragments.BaseFragment;
 import ru.gafuk.android.fragments.TabManager;
 import ru.gafuk.android.fragments.chat.ChatFragment;
+import ru.gafuk.android.fragments.news.main.NewsMainFragment;
 import ru.gafuk.android.glide.GlideApp;
 import ru.gafuk.android.glide.GlideRequests;
 import ru.gafuk.android.rxapi.RxApi;
 import ru.gafuk.android.utils.rx.Subscriber;
+import ru.gafuk.android.views.drawers.DrawerMenu;
 
 /**
  * Created by Александр on 24.10.2017.
@@ -52,6 +57,7 @@ public class ContactsFragment extends BaseFragment
     public ContactsFragment() {
         configuration.setDefaultTitle(App.getInstance().getString(R.string.fragment_title_contacts));
         configuration.setAlone(true);
+        configuration.setNeedAuth(true);
     }
 
     @Override
@@ -98,6 +104,11 @@ public class ContactsFragment extends BaseFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewsReady();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     @Override

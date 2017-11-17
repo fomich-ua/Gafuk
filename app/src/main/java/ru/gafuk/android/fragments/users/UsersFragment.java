@@ -83,6 +83,7 @@ public class UsersFragment extends BaseFragment
     public UsersFragment() {
         configuration.setDefaultTitle(App.getInstance().getString(R.string.fragment_title_users));
         configuration.setAlone(true);
+        configuration.setNeedAuth(true);
     }
 
     @Override
