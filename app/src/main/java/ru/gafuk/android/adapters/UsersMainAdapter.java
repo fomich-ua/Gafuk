@@ -79,8 +79,8 @@ public class UsersMainAdapter extends ListDelegationAdapter<List<UserItem>>
         UsersAdapterDelegate.ViewHolder viewHolder = (UsersAdapterDelegate.ViewHolder) holder;
         if (viewHolder!=null) {
             UserItem item = items.get(position);
-            if (!TextUtils.isEmpty(item.getSmallAvatar())) {
-                fullRequest.load(item.getSmallAvatar())
+            if (!TextUtils.isEmpty(item.getAvatar())) {
+                fullRequest.load(item.getAvatar())
 //                        .thumbnail(thumbRequest.load(item.getSmallAvatar()))
                         .into(viewHolder.user_avatar);
             }
@@ -118,7 +118,7 @@ public class UsersMainAdapter extends ListDelegationAdapter<List<UserItem>>
     @Nullable
     @Override
     public RequestBuilder getPreloadRequestBuilder(UserItem item) {
-        return fullRequest.load(item.getSmallAvatar());
+        return fullRequest.load(item.getAvatar());
 //        return fullRequest.thumbnail(thumbRequest.load(item.getSmallAvatar())).load(item.getSmallAvatar());
     }
 

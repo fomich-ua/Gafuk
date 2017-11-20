@@ -14,14 +14,14 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import ru.gafuk.android.R;
-import ru.gafuk.android.api.contacts.models.Message;
+import ru.gafuk.android.api.contacts.models.MessageContacts;
 import ru.gafuk.android.utils.DateUtils;
 
 /**
  * Created by Александр on 30.10.2017.
  */
 
-public class ChatAdapterDelegateReceived extends AdapterDelegate<List<Message>> {
+public class ChatAdapterDelegateReceived extends AdapterDelegate<List<MessageContacts>> {
 
     private String contact_nick;
     private final DateUtils dateUtils = DateUtils.getInstance();
@@ -35,14 +35,14 @@ public class ChatAdapterDelegateReceived extends AdapterDelegate<List<Message>> 
     }
 
     @Override
-    protected boolean isForViewType(@NonNull List<Message> items, int position) {
+    protected boolean isForViewType(@NonNull List<MessageContacts> items, int position) {
         return items.get(position)!=null;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull List<Message> items, int position, @NonNull RecyclerView.ViewHolder holder, @NonNull List<Object> payloads) {
+    protected void onBindViewHolder(@NonNull List<MessageContacts> items, int position, @NonNull RecyclerView.ViewHolder holder, @NonNull List<Object> payloads) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        Message item = items.get(position);
+        MessageContacts item = items.get(position);
 
         viewHolder.text_message_name.setText(contact_nick);
         viewHolder.text_message_body.setText(Html.fromHtml(item.getMessage()));

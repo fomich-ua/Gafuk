@@ -47,13 +47,12 @@ public class UsersApi implements IUsersApi {
 
             UserItem userItem = new UserItem();
 
-            userItem.setSmallAvatar(element.getElementsByClass("users-list-avatar").first().getElementsByTag("img").first().absUrl("src"));
+            userItem.setAvatar(element.getElementsByClass("users-list-avatar").first().getElementsByTag("img").first().absUrl("src"));
             userItem.setNickname(element.getElementsByClass("users-list-nickname").first().getElementsByAttribute("title").first().attr("title"));
             userItem.setReputation(StringUtils.str2int(element.getElementsByClass("users-list-count").first().text()));
 
             userItems.add(userItem);
-        };
-
+        }
         return userItems;
     }
 
@@ -71,7 +70,7 @@ public class UsersApi implements IUsersApi {
 
             UserItem userItem = new UserItem();
 
-            userItem.setSmallAvatar(element.getElementsByClass("users-list-avatar").first().getElementsByTag("img").first().absUrl("src"));
+            userItem.setAvatar(element.getElementsByClass("users-list-avatar").first().getElementsByTag("img").first().absUrl("src"));
             userItem.setNickname(element.getElementsByClass("users-list-nickname").first().getElementsByAttribute("title").first().attr("title"));
             userItem.setReputation(StringUtils.str2int(element.getElementsByClass("users-list-count").first().text()));
 
@@ -117,13 +116,13 @@ public class UsersApi implements IUsersApi {
 
                 UserItem userItem = new UserItem();
 
-                userItem.setSmallAvatar(element.getElementsByClass("users-list-avatar").first().getElementsByTag("img").first().absUrl("src"));
+                userItem.setAvatar(element.getElementsByClass("users-list-avatar").first().getElementsByTag("img").first().absUrl("src"));
                 userItem.setNickname(element.getElementsByClass("users-list-nickname").first().getElementsByAttribute("title").first().attr("title"));
                 userItem.setReputation(StringUtils.str2int(element.getElementsByClass("users-list-count").first().text()));
 
                 userItems.add(userItem);
 
-            };
+            }
         }
 
         elements = document.getElementsByClass("gafuk-pagination__page");

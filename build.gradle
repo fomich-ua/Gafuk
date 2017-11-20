@@ -46,6 +46,7 @@ ext.versions = [
 ext.support = [
         appcompat7: "com.android.support:appcompat-v7:$versions.androidSupport",
         support4: "com.android.support:support-v4:$versions.androidSupport",
+//        vector_drawable: "com.android.support:support-vector-drawable:$versions.androidSupport",
         design: "com.android.support:design:$versions.androidSupport",
         cardview: "com.android.support:cardview-v7:$versions.androidSupport",
         recyclerview: "com.android.support:recyclerview-v7:$versions.androidSupport",

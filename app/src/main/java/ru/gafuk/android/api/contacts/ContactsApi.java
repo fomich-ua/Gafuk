@@ -15,9 +15,9 @@ import okhttp3.FormBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import ru.gafuk.android.Constant;
-import ru.gafuk.android.api.contacts.base.BaseContactApi;
+import ru.gafuk.android.api.contacts.interfaces.IContactsApi;
 import ru.gafuk.android.api.contacts.models.ContactItem;
-import ru.gafuk.android.api.contacts.models.Message;
+import ru.gafuk.android.api.contacts.models.MessageContacts;
 import ru.gafuk.android.client.Client;
 import ru.gafuk.android.client.NetworkResponse;
 
@@ -25,7 +25,7 @@ import ru.gafuk.android.client.NetworkResponse;
  * Created by Александр on 25.10.2017.
  */
 
-public class ContactsApi extends BaseContactApi {
+public class ContactsApi implements IContactsApi {
 
     public static final String dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
@@ -66,7 +66,7 @@ public class ContactsApi extends BaseContactApi {
     }
 
     @Override
-    public ArrayList<Message>getContactMessages(int contact_id) throws Exception{
+    public ArrayList<MessageContacts>getContactMessages(int contact_id) throws Exception{
 
         RequestBody formBody = new FormBody.Builder()
                 .add("act", "getMessages")
@@ -86,7 +86,7 @@ public class ContactsApi extends BaseContactApi {
         JsonObject jsonObject = (JsonObject) new JsonParser().parse(response.getBody());
         JsonArray jsonMessages = jsonObject.getAsJsonArray("messages");
 
-        Type type = new TypeToken<ArrayList<Message>>() {}.getType();
+        Type type = new TypeToken<ArrayList<MessageContacts>>() {}.getType();
 
         final Gson gson = new GsonBuilder()
                 .setDateFormat(dateTimeFormat)

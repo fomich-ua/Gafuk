@@ -21,7 +21,7 @@ import java.util.List;
 import ru.gafuk.android.Constant;
 import ru.gafuk.android.adapters.adapterdelegates.ChatAdapterDelegateReceived;
 import ru.gafuk.android.adapters.adapterdelegates.ChatAdapterDelegateSent;
-import ru.gafuk.android.api.contacts.models.Message;
+import ru.gafuk.android.api.contacts.models.MessageContacts;
 import ru.gafuk.android.glide.GlideRequest;
 import ru.gafuk.android.glide.GlideRequests;
 
@@ -31,8 +31,8 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
  * Created by Александр on 29.10.2017.
  */
 
-public class ChatAdapter extends ListDelegationAdapter<List<Message>>
-        implements ListPreloader.PreloadModelProvider<Message>{
+public class ChatAdapter extends ListDelegationAdapter<List<MessageContacts>>
+        implements ListPreloader.PreloadModelProvider<MessageContacts>{
 
     public static final int FROM_MESSAGE = 1;
     public static final int TO_MESSAGE = 2;
@@ -102,7 +102,7 @@ public class ChatAdapter extends ListDelegationAdapter<List<Message>>
         }
     }
 
-    public void addItem(Message item){
+    public void addItem(MessageContacts item){
         if (items==null){
             items = new ArrayList<>();
         }
@@ -110,7 +110,7 @@ public class ChatAdapter extends ListDelegationAdapter<List<Message>>
         notifyItemInserted(getItemCount());
     }
 
-    public void addAll(Collection<Message> newItems, boolean clearList){
+    public void addAll(Collection<MessageContacts> newItems, boolean clearList){
         if (clearList)
             items.clear();
 
@@ -126,13 +126,13 @@ public class ChatAdapter extends ListDelegationAdapter<List<Message>>
 
     @NonNull
     @Override
-    public List<Message> getPreloadItems(int position) {
+    public List<MessageContacts> getPreloadItems(int position) {
         return items.subList(position, position + 1);
     }
 
     @Nullable
     @Override
-    public RequestBuilder getPreloadRequestBuilder(Message item) {
+    public RequestBuilder getPreloadRequestBuilder(MessageContacts item) {
         return fullRequest.thumbnail(thumbRequest.load(item)).load(item);
     }
 
@@ -142,9 +142,9 @@ public class ChatAdapter extends ListDelegationAdapter<List<Message>>
 
     public interface ItemClickListener {
 
-        boolean onLongItemClick(View view, Message item, int position);
+        boolean onLongItemClick(View view, MessageContacts item, int position);
 
-        void onItemClick(View view, Message item, int position);
+        void onItemClick(View view, MessageContacts item, int position);
 
     }
 }

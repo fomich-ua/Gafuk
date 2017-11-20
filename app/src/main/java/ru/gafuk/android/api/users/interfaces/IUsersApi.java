@@ -1,5 +1,7 @@
 package ru.gafuk.android.api.users.interfaces;
 
+import com.stfalcon.chatkit.commons.models.IUser;
+
 import java.util.List;
 
 /**

@@ -18,7 +18,7 @@ import java.util.List;
 import ru.gafuk.android.App;
 import ru.gafuk.android.R;
 import ru.gafuk.android.adapters.ChatAdapter;
-import ru.gafuk.android.api.contacts.models.Message;
+import ru.gafuk.android.api.contacts.models.MessageContacts;
 import ru.gafuk.android.fragments.BaseFragment;
 import ru.gafuk.android.glide.GlideApp;
 import ru.gafuk.android.glide.GlideRequests;
@@ -46,7 +46,7 @@ public class ChatFragment extends BaseFragment
 
     private LinearLayoutManager layoutManager;
 
-    private Subscriber<List<Message>> mainSubscriber = new Subscriber<>(this);
+    private Subscriber<List<MessageContacts>> mainSubscriber = new Subscriber<>(this);
 
     private static final int PRELOAD_AHEAD_ITEMS = 3;
 
@@ -84,8 +84,8 @@ public class ChatFragment extends BaseFragment
 
         adapter = new ChatAdapter(contact_id, contact_nick, contact_avatar, this, glideRequests);
 
-        ViewPreloadSizeProvider<Message> preloadSizeProvider = new ViewPreloadSizeProvider<>();
-        RecyclerViewPreloader<Message> preloader = new RecyclerViewPreloader<>(
+        ViewPreloadSizeProvider<MessageContacts> preloadSizeProvider = new ViewPreloadSizeProvider<>();
+        RecyclerViewPreloader<MessageContacts> preloader = new RecyclerViewPreloader<>(
                 glideRequests, adapter, preloadSizeProvider, PRELOAD_AHEAD_ITEMS);
 
         recyclerView = (RecyclerView) findViewById(R.id.base_list);
@@ -122,18 +122,18 @@ public class ChatFragment extends BaseFragment
         mainSubscriber.subscribe(RxApi.ContactsList().getContactMessages(contact_id), list -> onLoadMessages(list, true), new ArrayList<>(), v -> loadDataMessages(withClear));
     }
 
-    private void onLoadMessages(List<Message> messages, boolean clearList){
+    private void onLoadMessages(List<MessageContacts> messages, boolean clearList){
         refreshLayout.setRefreshing(false);
         adapter.addAll(messages, clearList);
     }
 
     @Override
-    public boolean onLongItemClick(View view, Message item, int position) {
+    public boolean onLongItemClick(View view, MessageContacts item, int position) {
         return false;
     }
 
     @Override
-    public void onItemClick(View view, Message item, int position) {
+    public void onItemClick(View view, MessageContacts item, int position) {
 
     }
 

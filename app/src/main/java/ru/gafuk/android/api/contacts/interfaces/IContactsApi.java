@@ -9,5 +9,5 @@ import java.util.List;
 public interface IContactsApi {
     List<? extends IContact> getContacts() throws Exception;
 
-    List<? extends IMessage> getContactMessages(int contact_id) throws Exception;
+    List<? extends IMessageContacts> getContactMessages(int contact_id) throws Exception;
 }
