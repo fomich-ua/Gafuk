@@ -30,6 +30,7 @@ import ru.gafuk.android.fragments.TabManager;
 import ru.gafuk.android.fragments.auth.AuthFragment;
 import ru.gafuk.android.fragments.blogs.main.BlogsMainFragment;
 import ru.gafuk.android.fragments.contacts.ContactsFragment;
+import ru.gafuk.android.fragments.dialogs.DialogsFragment;
 import ru.gafuk.android.fragments.news.main.NewsMainFragment;
 import ru.gafuk.android.fragments.users.UsersFragment;
 import ru.gafuk.android.rxapi.RxApi;
@@ -129,11 +130,18 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
                 R.id.nav_blogs,
                 BlogsMainFragment.class));
 
+        // TODO: 20.11.2017 удалить после добавления диалогов
         createdMenuItems.add(new MenuItem(App.getInstance().getString(R.string.fragment_title_contacts),
                 R.drawable.ic_contacts,
                 R.id.nav_contacts,
                 ContactsFragment.class));
         setEnabledStateMenuItem(R.id.nav_contacts, Client.loggedWithCookie());
+
+        createdMenuItems.add(new MenuItem(App.getInstance().getString(R.string.fragment_title_dialogs),
+                R.drawable.ic_contacts,
+                R.id.nav_dialogs,
+                DialogsFragment.class));
+        setEnabledStateMenuItem(R.id.nav_dialogs, Client.loggedWithCookie());
 
         createdMenuItems.add(new MenuItem(App.getInstance().getString(R.string.fragment_title_users),
                 R.drawable.ic_users,

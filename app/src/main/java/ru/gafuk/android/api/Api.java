@@ -3,6 +3,7 @@ package ru.gafuk.android.api;
 import ru.gafuk.android.api.auth.AuthApi;
 import ru.gafuk.android.api.blogs.BlogsApi;
 import ru.gafuk.android.api.contacts.ContactsApi;
+import ru.gafuk.android.api.dialogs.DialogsApi;
 import ru.gafuk.android.api.news.NewsApi;
 import ru.gafuk.android.api.users.UsersApi;
 
@@ -15,6 +16,7 @@ public class Api {
     private static NewsApi newsApi = null;
     private static BlogsApi blogsApi = null;
     private static ContactsApi contactsApi = null;
+    private static DialogsApi dialogsApi = null;
     private static AuthApi authApi = null;
     private static UsersApi usersApi = null;
 
@@ -36,6 +38,11 @@ public class Api {
     public static ContactsApi ContactsApi() {
         if (contactsApi == null) contactsApi = new ContactsApi();
         return contactsApi;
+    }
+
+    public static DialogsApi DialogsApi() {
+        if (dialogsApi == null) dialogsApi = new DialogsApi();
+        return dialogsApi;
     }
 
     public static AuthApi AuthApi(){

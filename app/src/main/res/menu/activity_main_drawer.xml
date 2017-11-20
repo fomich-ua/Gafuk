@@ -21,6 +21,10 @@
             android:icon="@drawable/ic_contacts"
             android:title="@string/fragment_title_contacts" />
         <item
+            android:id="@+id/nav_dialogs"
+            android:icon="@drawable/ic_contacts"
+            android:title="@string/fragment_title_dialogs" />
+        <item
             android:id="@+id/nav_users"
             android:icon="@drawable/ic_users"
             android:title="@string/fragment_title_users" />
