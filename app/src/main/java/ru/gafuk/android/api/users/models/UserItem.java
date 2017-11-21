@@ -1,27 +1,28 @@
 package ru.gafuk.android.api.users.models;
 
-import com.stfalcon.chatkit.commons.models.IUser;
+import ru.gafuk.android.api.users.interfaces.IUser;
 
 /**
  * Created by Александр on 27.10.2017.
  */
 
 public class UserItem implements IUser {
-    private String id;
+
+    private int id;
     private String url;
     private String avatar;
+    private boolean online;
     private String nickname;
     private int reputation;
 
     public UserItem() {
     }
 
-    @Override
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -33,13 +34,20 @@ public class UserItem implements IUser {
         this.url = url;
     }
 
-    @Override
     public String getAvatar() {
         return avatar;
     }
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
     }
 
     public String getNickname() {
@@ -58,8 +66,4 @@ public class UserItem implements IUser {
         this.reputation = reputation;
     }
 
-    @Override
-    public String getName() {
-        return getNickname();
-    }
 }

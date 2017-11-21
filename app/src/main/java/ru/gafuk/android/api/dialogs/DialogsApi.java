@@ -14,6 +14,7 @@ import okhttp3.FormBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import ru.gafuk.android.Constant;
+import ru.gafuk.android.api.dialogs.interfaces.IDialogsApi;
 import ru.gafuk.android.api.dialogs.models.Dialog;
 import ru.gafuk.android.client.Client;
 import ru.gafuk.android.client.NetworkResponse;
@@ -22,7 +23,7 @@ import ru.gafuk.android.client.NetworkResponse;
  * Created by aborz on 18.11.2017.
  */
 
-public class DialogsApi {
+public class DialogsApi implements IDialogsApi{
 
     public List<Dialog> getDialogs() throws Exception {
         RequestBody formBody = new FormBody.Builder()
@@ -46,4 +47,5 @@ public class DialogsApi {
 
         return gson.fromJson(jsonContacts, new TypeToken<ArrayList<Dialog>>() {}.getType());
     }
+
 }

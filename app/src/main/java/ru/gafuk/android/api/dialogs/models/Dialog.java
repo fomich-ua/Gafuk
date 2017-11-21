@@ -1,9 +1,8 @@
 package ru.gafuk.android.api.dialogs.models;
 
-import com.stfalcon.chatkit.commons.models.IDialog;
-
 import java.util.ArrayList;
 
+import ru.gafuk.android.api.dialogs.interfaces.IDialog;
 import ru.gafuk.android.api.users.models.UserItem;
 
 /**
@@ -12,61 +11,73 @@ import ru.gafuk.android.api.users.models.UserItem;
 
 public class Dialog implements IDialog<Message> {
 
-    private String id;
-    private String dialogPhoto;
-    private String dialogName;
+    private int id;
+    private String url;
+    private String avatar;
+    private boolean online;
+    private String nickname;
+    private int new_messages;
+
     private ArrayList<UserItem> users;
     private Message lastMessage;
 
-    private int unreadCount;
+    public Dialog() {
 
-    public Dialog(String id, String name, String photo,
-                  ArrayList<UserItem> users, Message lastMessage, int unreadCount) {
-
-        this.id = id;
-        this.dialogName = name;
-        this.dialogPhoto = photo;
-        this.users = users;
-        this.lastMessage = lastMessage;
-        this.unreadCount = unreadCount;
     }
 
-    @Override
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    @Override
-    public String getDialogPhoto() {
-        return dialogPhoto;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Override
-    public String getDialogName() {
-        return dialogName;
+    public String getUrl() {
+        return url;
     }
 
-    @Override
-    public ArrayList<UserItem> getUsers() {
-        return users;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    @Override
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public int getNew_messages() {
+        return new_messages;
+    }
+
+    public void setNew_messages(int new_messages) {
+        this.new_messages = new_messages;
+    }
+
     public Message getLastMessage() {
         return lastMessage;
     }
 
-    @Override
-    public void setLastMessage(Message lastMessage) {
-        this.lastMessage = lastMessage;
-    }
-
-    @Override
-    public int getUnreadCount() {
-        return unreadCount;
-    }
-
-    public void setUnreadCount(int unreadCount) {
-        this.unreadCount = unreadCount;
+    public void setLastMessage(Message message) {
+        this.lastMessage = message;
     }
 }

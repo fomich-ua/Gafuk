@@ -7,11 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
-import com.stfalcon.chatkit.commons.ImageLoader;
-import com.stfalcon.chatkit.dialogs.DialogsList;
-import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +27,9 @@ public class DialogsFragment extends BaseFragment {
 
     private SwipeRefreshLayout refreshLayout;
 
-    private ImageLoader imageLoader;
-    private DialogsList dialogsList;
-    private DialogsListAdapter<Dialog> dialogsAdapter;
+//    private ImageLoader imageLoader;
+//    private DialogsList dialogsList;
+//    private DialogsListAdapter<Dialog> dialogsAdapter;
 
     public DialogsFragment() {
         configuration.setDefaultTitle(App.getInstance().getString(R.string.fragment_title_dialogs));
@@ -53,12 +48,12 @@ public class DialogsFragment extends BaseFragment {
         refreshLayout.setVisibility(View.VISIBLE);
         refreshLayout.setOnRefreshListener(this::loadData);
 
-        dialogsList = (DialogsList) findViewById(R.id.dialogsList);
-
-        imageLoader = (imageView, url) -> Glide.with(DialogsFragment.this).load(url).into(imageView);
-
-        dialogsAdapter = new DialogsListAdapter<>(imageLoader);
-        dialogsList.setAdapter(dialogsAdapter);
+//        dialogsList = (DialogsList) findViewById(R.id.dialogsList);
+//
+//        imageLoader = (imageView, url) -> Glide.with(DialogsFragment.this).load(url).into(imageView);
+//
+//        dialogsAdapter = new DialogsListAdapter<>(imageLoader);
+//        dialogsList.setAdapter(dialogsAdapter);
 
         return view;
     }
@@ -84,12 +79,12 @@ public class DialogsFragment extends BaseFragment {
     private void onLoadDialogs(List<Dialog> list, boolean withClear) {
         refreshLayout.setRefreshing(false);
 
-        if (withClear) {
-            dialogsAdapter.clear();
-        }
-
-        if (list.size() > 0) {
-            dialogsAdapter.addItems(list);
-        }
+//        if (withClear) {
+//            dialogsAdapter.clear();
+//        }
+//
+//        if (list.size() > 0) {
+//            dialogsAdapter.addItems(list);
+//        }
     }
 }

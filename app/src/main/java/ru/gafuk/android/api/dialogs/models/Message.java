@@ -1,9 +1,8 @@
 package ru.gafuk.android.api.dialogs.models;
 
-import com.stfalcon.chatkit.commons.models.IMessage;
-
 import java.util.Date;
 
+import ru.gafuk.android.api.dialogs.interfaces.IMessage;
 import ru.gafuk.android.api.users.models.UserItem;
 
 /**
@@ -12,42 +11,82 @@ import ru.gafuk.android.api.users.models.UserItem;
 
 public class Message implements IMessage {
 
-    private String id;
+    private int id;
 
     private int to_id;
     private int from_id;
-    private Date createdAt;
+    private Date senddate;
     private int is_new;
-    private String text;
+    private String message;
+    private int to_del;
+    private int from_del;
+
     private UserItem user;
 
-    public Message(String id, int to_id, int from_id, UserItem user, String text, Date createdAt) {
+    public Message() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public int getTo_id() {
+        return to_id;
+    }
+
+    public void setTo_id(int to_id) {
         this.to_id = to_id;
+    }
+
+    public int getFrom_id() {
+        return from_id;
+    }
+
+    public void setFrom_id(int from_id) {
         this.from_id = from_id;
-
-        this.text = text;
-        this.user = user;
-        this.createdAt = createdAt;
     }
 
-    @Override
-    public String getId() {
-        return String.valueOf(id);
+    public Date getSenddate() {
+        return senddate;
     }
 
-    @Override
-    public Date getCreatedAt() {
-        return createdAt;
+    public void setSenddate(Date senddate) {
+        this.senddate = senddate;
     }
 
-    @Override
-    public String getText() {
-        return text;
+    public int getIs_new() {
+        return is_new;
     }
 
-    @Override
-    public UserItem getUser() {
-        return user;
+    public void setIs_new(int is_new) {
+        this.is_new = is_new;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public int getTo_del() {
+        return to_del;
+    }
+
+    public void setTo_del(int to_del) {
+        this.to_del = to_del;
+    }
+
+    public int getFrom_del() {
+        return from_del;
+    }
+
+    public void setFrom_del(int from_del) {
+        this.from_del = from_del;
     }
 }
