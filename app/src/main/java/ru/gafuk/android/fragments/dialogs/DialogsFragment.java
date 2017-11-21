@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,9 @@ import ru.gafuk.android.api.dialogs.models.Dialog;
 import ru.gafuk.android.fragments.BaseFragment;
 import ru.gafuk.android.rxapi.RxApi;
 import ru.gafuk.android.utils.rx.Subscriber;
+import ru.gafuk.android.views.chatkit.commons.ImageLoader;
+import ru.gafuk.android.views.chatkit.dialogs.DialogsList;
+import ru.gafuk.android.views.chatkit.dialogs.DialogsListAdapter;
 
 /**
  * Created by aborz on 18.11.2017.
@@ -27,9 +32,9 @@ public class DialogsFragment extends BaseFragment {
 
     private SwipeRefreshLayout refreshLayout;
 
-//    private ImageLoader imageLoader;
-//    private DialogsList dialogsList;
-//    private DialogsListAdapter<Dialog> dialogsAdapter;
+    private ImageLoader imageLoader;
+    private DialogsList dialogsList;
+    private DialogsListAdapter<Dialog> dialogsAdapter;
 
     public DialogsFragment() {
         configuration.setDefaultTitle(App.getInstance().getString(R.string.fragment_title_dialogs));
@@ -48,12 +53,12 @@ public class DialogsFragment extends BaseFragment {
         refreshLayout.setVisibility(View.VISIBLE);
         refreshLayout.setOnRefreshListener(this::loadData);
 
-//        dialogsList = (DialogsList) findViewById(R.id.dialogsList);
-//
-//        imageLoader = (imageView, url) -> Glide.with(DialogsFragment.this).load(url).into(imageView);
-//
-//        dialogsAdapter = new DialogsListAdapter<>(imageLoader);
-//        dialogsList.setAdapter(dialogsAdapter);
+        dialogsList = (DialogsList) findViewById(R.id.dialogsList);
+
+        imageLoader = (imageView, url) -> Glide.with(DialogsFragment.this).load(url).into(imageView);
+
+        dialogsAdapter = new DialogsListAdapter<>(imageLoader);
+        dialogsList.setAdapter(dialogsAdapter);
 
         return view;
     }
@@ -79,12 +84,12 @@ public class DialogsFragment extends BaseFragment {
     private void onLoadDialogs(List<Dialog> list, boolean withClear) {
         refreshLayout.setRefreshing(false);
 
-//        if (withClear) {
-//            dialogsAdapter.clear();
-//        }
-//
-//        if (list.size() > 0) {
-//            dialogsAdapter.addItems(list);
-//        }
+        if (withClear) {
+            dialogsAdapter.clear();
+        }
+
+        if (list.size() > 0) {
+            dialogsAdapter.addItems(list);
+        }
     }
 }

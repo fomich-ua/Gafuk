@@ -89,4 +89,12 @@ public class Message implements IMessage {
     public void setFrom_del(int from_del) {
         this.from_del = from_del;
     }
+
+    public UserItem getUser() {
+        return user;
+    }
+
+    public void setUser(UserItem user) {
+        this.user = user;
+    }
 }

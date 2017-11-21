@@ -1,5 +1,9 @@
 package ru.gafuk.android.api.dialogs.interfaces;
 
+import java.util.List;
+
+import ru.gafuk.android.api.users.models.UserItem;
+
 /**
  * Created by Александр on 21.11.2017.
  */
@@ -18,9 +22,9 @@ public interface IDialog<MESSAGE extends IMessage> {
 
     void setAvatar(String avatar);
 
-    boolean isOnline();
+    int isOnline();
 
-    void setOnline(boolean online);
+    void setOnline(int online);
 
     String getNickname();
 
@@ -34,4 +38,7 @@ public interface IDialog<MESSAGE extends IMessage> {
 
     void setLastMessage(MESSAGE message);
 
+    List<UserItem> getUsers();
+
+    void setUsers(List<UserItem> users);
 }

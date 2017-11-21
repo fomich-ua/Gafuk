@@ -1,6 +1,7 @@
 package ru.gafuk.android.api.dialogs.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ru.gafuk.android.api.dialogs.interfaces.IDialog;
 import ru.gafuk.android.api.users.models.UserItem;
@@ -14,12 +15,12 @@ public class Dialog implements IDialog<Message> {
     private int id;
     private String url;
     private String avatar;
-    private boolean online;
+    private int online;
     private String nickname;
     private int new_messages;
 
-    private ArrayList<UserItem> users;
-    private Message lastMessage;
+    private List<UserItem> users;
+    private Message lastMessage = new Message();
 
     public Dialog() {
 
@@ -49,11 +50,11 @@ public class Dialog implements IDialog<Message> {
         this.avatar = avatar;
     }
 
-    public boolean isOnline() {
+    public int isOnline() {
         return online;
     }
 
-    public void setOnline(boolean online) {
+    public void setOnline(int online) {
         this.online = online;
     }
 
@@ -79,5 +80,13 @@ public class Dialog implements IDialog<Message> {
 
     public void setLastMessage(Message message) {
         this.lastMessage = message;
+    }
+
+    public List<UserItem> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserItem> users) {
+        this.users = users;
     }
 }

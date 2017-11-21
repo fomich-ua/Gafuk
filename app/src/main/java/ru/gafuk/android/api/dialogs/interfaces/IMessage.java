@@ -2,6 +2,8 @@ package ru.gafuk.android.api.dialogs.interfaces;
 
 import java.util.Date;
 
+import ru.gafuk.android.api.users.models.UserItem;
+
 /**
  * Created by Александр on 21.11.2017.
  */
@@ -32,12 +34,16 @@ public interface IMessage {
 
     void setMessage(String message);
 
-    public int getTo_del();
+    int getTo_del();
 
-    public void setTo_del(int to_del);
+    void setTo_del(int to_del);
 
-    public int getFrom_del();
+    int getFrom_del();
 
-    public void setFrom_del(int from_del);
+    void setFrom_del(int from_del);
+
+    UserItem getUser();
+
+    void setUser(UserItem user);
 
 }
