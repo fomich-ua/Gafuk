@@ -1,7 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:id="@id/dialogRootLayout"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/dialogRootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@id/dialogContainer"
@@ -13,7 +14,8 @@
             android:id="@id/dialogAvatar"
             android:layout_width="@dimen/dialog_avatar_width"
             android:layout_height="@dimen/dialog_avatar_height"
-            android:layout_margin="16dp"/>
+            android:layout_margin="16dp"
+            tools:src="@drawable/ps4"/>
 
         <TextView
             android:id="@id/dialogName"
@@ -28,7 +30,8 @@
             android:layout_toStartOf="@id/dialogDate"
             android:ellipsize="end"
             android:includeFontPadding="false"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            tools:text="Dialog name"/>
 
         <TextView
             android:id="@id/dialogDate"
@@ -40,7 +43,8 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:ellipsize="end"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            tools:text="22.10.2017"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -57,7 +61,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginEnd="7dp"
-                android:layout_marginRight="7dp"/>
+                android:layout_marginRight="7dp"
+                tools:src="@drawable/ps4"/>
 
 
             <TextView
@@ -69,7 +74,8 @@
                 android:layout_toRightOf="@id/dialogLastMessageUserAvatar"
                 android:ellipsize="end"
                 android:gravity="top"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                tools:text="Последнее полученное сообщение от пользователя"/>
 
         </RelativeLayout>
 

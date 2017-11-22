@@ -583,26 +583,28 @@ public class DialogsListAdapter<DIALOG extends IDialog>
 
             //Set Date
             String formattedDate = null;
-            Date lastMessageDate = dialog.getLastMessage().getSenddate();
-            if (datesFormatter != null) formattedDate = datesFormatter.format(lastMessageDate);
-            tvDate.setText(formattedDate == null
-                    ? getDateString(lastMessageDate)
-                    : formattedDate);
-
+            if (dialog.getLastMessage() != null) { // добавлена проверка
+                Date lastMessageDate = dialog.getLastMessage().getSenddate();
+                if (datesFormatter != null) formattedDate = datesFormatter.format(lastMessageDate);
+                tvDate.setText(formattedDate == null
+                        ? getDateString(lastMessageDate)
+                        : formattedDate);
+            }
             //Set Dialog avatar
             if (imageLoader != null) {
                 imageLoader.loadImage(ivAvatar, dialog.getAvatar());
             }
 
             //Set Last message user avatar
-            if (imageLoader != null) {
+            if (imageLoader != null && dialog.getLastMessage() != null) { // добавлена проверка
                 imageLoader.loadImage(ivLastMessageUser, dialog.getLastMessage().getUser().getAvatar());
             }
             ivLastMessageUser.setVisibility(dialogStyle.isDialogMessageAvatarEnabled()
                     && dialog.getUsers().size() > 1 ? VISIBLE : GONE);
 
             //Set Last message text
-            tvLastMessage.setText(dialog.getLastMessage().getMessage());
+            if (dialog.getLastMessage() != null) // добавлена проверка
+                tvLastMessage.setText(dialog.getLastMessage().getMessage());
 
             //Set Unread message count bubble
             tvBubble.setText(String.valueOf(dialog.getNew_messages()));

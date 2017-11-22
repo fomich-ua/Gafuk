@@ -1,6 +1,5 @@
 package ru.gafuk.android.api.dialogs.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ru.gafuk.android.api.dialogs.interfaces.IDialog;
@@ -15,12 +14,12 @@ public class Dialog implements IDialog<Message> {
     private int id;
     private String url;
     private String avatar;
-    private int online;
+    private boolean online;
     private String nickname;
     private int new_messages;
 
     private List<UserItem> users;
-    private Message lastMessage = new Message();
+    private Message lastMessage;
 
     public Dialog() {
 
@@ -50,11 +49,11 @@ public class Dialog implements IDialog<Message> {
         this.avatar = avatar;
     }
 
-    public int isOnline() {
+    public boolean isOnline() {
         return online;
     }
 
-    public void setOnline(int online) {
+    public void setOnline(boolean online) {
         this.online = online;
     }
 

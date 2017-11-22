@@ -22,9 +22,9 @@ public interface IDialog<MESSAGE extends IMessage> {
 
     void setAvatar(String avatar);
 
-    int isOnline();
+    boolean isOnline();
 
-    void setOnline(int online);
+    void setOnline(boolean online);
 
     String getNickname();
 
