@@ -4,7 +4,6 @@ import ru.gafuk.android.rxapi.apiclasses.AuthRx;
 import ru.gafuk.android.rxapi.apiclasses.BlogsRx;
 import ru.gafuk.android.rxapi.apiclasses.CommentsRx;
 import ru.gafuk.android.rxapi.apiclasses.ContactsRx;
-import ru.gafuk.android.rxapi.apiclasses.DialogsRx;
 import ru.gafuk.android.rxapi.apiclasses.NewsRx;
 import ru.gafuk.android.rxapi.apiclasses.UsersRx;
 
@@ -18,7 +17,6 @@ public class RxApi {
     private static NewsRx newsList = null;
     private static BlogsRx blogsList = null;
     private static ContactsRx contactsList = null;
-    private static DialogsRx dialogsList = null;
     private static AuthRx authRx = null;
     private static UsersRx usersRx = null;
     private static CommentsRx commentsRx = null;
@@ -41,11 +39,6 @@ public class RxApi {
     public static ContactsRx ContactsList(){
         if (contactsList == null) contactsList = new ContactsRx();
         return contactsList;
-    }
-
-    public static DialogsRx DialogsList(){
-        if (dialogsList == null) dialogsList = new DialogsRx();
-        return dialogsList;
     }
 
     public static AuthRx Auth(){

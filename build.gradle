@@ -28,7 +28,7 @@ task clean(type: Delete) {
 }
 
 ext.versions = [
-        androidSupport: "26.1.0",
+        androidSupport: "27.0.0",
         constraintLayout: "1.1.0-beta3",
         rxJava2: "2.1.3",
         rxAndroid: "2.0.1",
