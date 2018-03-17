@@ -46,6 +46,11 @@
 
         </activity>
 
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/title_activity_settings">
+        </activity>
+
         <receiver
             android:name=".client.NetworkStateReceiver"
             android:enabled="false"
@@ -57,9 +62,6 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".settings.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

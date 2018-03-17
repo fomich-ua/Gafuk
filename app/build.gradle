@@ -71,6 +71,4 @@ dependencies {
     compile dbflow.core
     compile dbflow.dbflow
 
-    // chatkit
-//    compile chatkit.chatkit
 }

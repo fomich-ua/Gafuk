@@ -5,6 +5,7 @@ package ru.gafuk.android.api.auth.interfaces;
  */
 
 public interface IAuthForm {
+
     public String getNick();
 
     public void setNick(String nick);
@@ -24,4 +25,5 @@ public interface IAuthForm {
     public String getRemember();
 
     public void setRemember(String remember);
+
 }

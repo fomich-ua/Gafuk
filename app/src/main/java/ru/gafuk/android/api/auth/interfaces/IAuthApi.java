@@ -7,7 +7,11 @@ import ru.gafuk.android.api.auth.models.AuthForm;
  */
 
 public interface IAuthApi {
+
     AuthForm getAuthForm() throws Exception;
+
     boolean login(final IAuthForm authForm) throws Exception;
+
     boolean logout() throws Exception;
+
 }

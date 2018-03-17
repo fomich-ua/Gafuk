@@ -22,8 +22,6 @@ import ru.gafuk.android.App;
 import ru.gafuk.android.Constant;
 import ru.gafuk.android.MainActivity;
 import ru.gafuk.android.R;
-import ru.gafuk.android.api.Api;
-import ru.gafuk.android.api.auth.AuthApi;
 import ru.gafuk.android.client.Client;
 import ru.gafuk.android.fragments.BaseFragment;
 import ru.gafuk.android.fragments.TabManager;
@@ -135,8 +133,6 @@ public class DrawerMenu implements NavigationView.OnNavigationItemSelectedListen
                 R.id.nav_contacts,
                 ContactsFragment.class));
         setEnabledStateMenuItem(R.id.nav_contacts, Client.loggedWithCookie());
-
-        setEnabledStateMenuItem(R.id.nav_dialogs, Client.loggedWithCookie());
 
         createdMenuItems.add(new MenuItem(App.getInstance().getString(R.string.fragment_title_users),
                 R.drawable.ic_users,
